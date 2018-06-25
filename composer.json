@@ -3,10 +3,11 @@
     "description": "A bundle to create styleguide pages.",
     "type": "sulu-bundle",
     "require": {
-        "symfony/dependency-injection": "^3.4",
         "symfony/config": "^3.4",
-        "symfony/http-kernel": "^3.4",
-        "symfony/http-foundation": "^3.4"
+        "symfony/dependency-injection": "^3.4",
+        "symfony/framework-bundle": "^3.4",
+        "symfony/http-foundation": "^3.4",
+        "symfony/http-kernel": "^3.4"
     },
     "autoload": {
         "psr-4": {

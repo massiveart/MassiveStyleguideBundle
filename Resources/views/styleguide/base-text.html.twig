@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+{% set isMobile = app.request.get('mobile') -%}
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    {% block style %}
+    {% endblock %}
+
+    <style>
+        body {
+            padding-bottom: 100px;
+            min-width: 600px;
+            margin: 0;
+        }
+
+        iframe {
+            border: 0;
+        }
+
+        .styleguide-container {
+            border: 1px dotted silver;
+            margin: 0 20px !important;
+            width: 280px;
+            max-width: 100%;
+            height: 100px;
+            position: relative;
+        }
+
+        .styleguide-title {
+            width: 300px;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 2rem;
+            display: inline-block;
+        }
+
+        .styleguide-sub-title {
+            width: 300px;
+            padding: 10px 20px;
+            height: 50px;
+            background: #E0E2E4;
+            font-weight: bold;
+            font-size: 1.25rem;
+            line-height:1.5em;
+            display: inline-block;
+        }
+
+        .styleguide-container [class]:not(.styleguide-identicator),
+        .styleguide-container [class]:not(.styleguide-identicator) > * {
+            display: block !important;
+            text-align: left !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            border: 0 !important;
+        }
+
+        .styleguide-container [class]:not(.styleguide-identicator)::after,
+        .styleguide-container [class]:not(.styleguide-identicator)::before {
+            display: none !important;;
+        }
+
+        .styleguide-identicator {
+            cursor: pointer;
+            position: absolute;
+            z-index: 10;
+            border: 1px solid black;
+            width: 15px;
+            height: 15px;
+            top: 5px;
+            right: 5px;
+            border-radius: 50%;
+        }
+
+        .styleguide-identicator:hover::after {
+            position: absolute;
+            content: attr(data-styles);
+            white-space: pre;
+            font-size: 12px;
+            font-family: monospace;
+            left: 15px;
+            top: -7px;
+            line-height: 1em;
+            background: white;
+            color: black;
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        .styleguide-colors {
+            width: 280px;
+            border: 1px dotted silver;
+            margin: 0 20px !important;
+            max-width: 100%;
+            position: relative;
+        }
+
+        .styleguide-color {
+            padding: 10px;
+            color: white;
+            height: 40px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .mobile-styleguide {
+            position: absolute;
+            left: 300px;
+        }
+
+        @media screen and (max-width: 767px) {
+            .hide-mobile {
+                visibility: hidden;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .hide-desktop {
+                visibility: hidden;
+            }
+        }
+
+        .sf-toolbar {
+            /* Disable symfony debug toolbar */
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    {% if not isMobile %}
+        <div style="position: fixed;width: 100%;z-index: 200;background:white;border-bottom:1px solid black;">
+            {% spaceless %}
+                <div class="styleguide-title">
+                    Desktop
+                </div>
+
+                <div class="styleguide-title">
+                    Mobile
+                </div>
+            {% endspaceless %}
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <iframe class="mobile-styleguide" src="?mobile=true" width="480" height="6000" scrolling="no"></iframe>
+    {% endif %}
+
+    <!-- Text -->
+    <div class="styleguide-container" style="height: 600px">
+        <!-- Paragraphs -->
+        <p>
+            Das ist ein <br>
+            Fließtext mit Umbruch.
+        </p>
+
+        <p>
+            <strong>Bold</strong>
+            <em>Italic</em>
+            <sup>Sup</sup>
+            <s>Strike</s>
+            <sub>Sub</sub>
+            <a href="#">Link</a>
+        </p>
+
+        <p>
+            Ein weiterer <br>
+            Absatz.
+        </p>
+
+        <!-- Unordered List -->
+        <ul>
+            <li>
+                Unordered List
+            </li>
+
+            <li>
+                Unordered List
+                <ul>
+                    <li>
+                        Unordered List<br>
+                        with break
+                    </li>
+
+                    <li>
+                        Unordered List
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                Unordered List<br>
+                with break
+            </li>
+        </ul>
+
+        <!-- Ordered List -->
+        <ol>
+            <li>
+                Ordered List
+            </li>
+
+            <li>
+                Ordered List
+                <ol>
+                    <li>
+                        Ordered List
+                    </li>
+
+                    <li>
+                        Ordered<br>
+                        List
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                Ordered<br>
+                List
+            </li>
+        </ol>
+    </div>
+
+    <!-- Colors -->
+    <div class="styleguide-sub-title">
+        Text Colors
+    </div>
+
+    <div id="colors" class="styleguide-colors">
+
+    </div>
+
+    <!-- Headlines -->
+    <div class="styleguide-sub-title">
+        Headlines
+    </div>
+
+    <div class="styleguide-container">
+        <h1>
+            Headline H1<br/>
+            with a break
+        </h1>
+    </div>
+
+    <div class="styleguide-container">
+        <h2>
+            Headline H2<br/>
+            with a break
+        </h2>
+    </div>
+
+    <div class="styleguide-container">
+        <h3>
+            Headline H3<br/>
+            with a break
+        </h3>
+    </div>
+
+    <div class="styleguide-container">
+        <h4>
+            Headline H4<br/>
+            with a break
+        </h4>
+    </div>
+
+    <div class="styleguide-container">
+        <h5>
+            Headline H5<br/>
+            with a break
+        </h5>
+    </div>
+
+    <div class="styleguide-container">
+        <h6>
+            Headline H6<br/>
+            with a break
+        </h6>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    {% block script %}{% endblock %}
+
+    <script>
+        var stringToColor = function(str) {
+            var hash = 0;
+            for (var i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+
+            var color = '#';
+
+            for (var i = 0; i < 3; i++) {
+                var value = (hash >> (i * 8)) & 0xFF;
+                color += ('00' + value.toString(16)).substr(-2);
+            }
+
+            return color;
+        };
+
+        var rgb2hex = function (rgb) {
+            rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            function hex(x) {
+                return ("0" + parseInt(x).toString(16)).slice(-2);
+            }
+            return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        };
+
+        var colors = [];
+
+        $('.styleguide-container').each(function(i) {
+            var $element = $(this).find('*').last();
+            var $styleGuideIdenticator = $('<div/>');
+            var styles = '';
+            var color = rgb2hex($element.css('color'));
+
+            if (colors.indexOf(color) === -1) {
+                colors.push(color);
+            }
+
+            styles += 'color:          ' +  color + "\n";
+            styles += 'font-size:      ' +  $element.css('font-size') + "\n";
+            styles += 'line-height:    ' +  $element.css('line-height') + "\n";
+            styles += 'font-weight:    ' +  $element.css('font-weight') + "\n";
+            styles += 'font-style:     ' +  $element.css('font-style') + "\n";
+            styles += 'letter-spacing: ' +  $element.css('letter-spacing');
+
+            var backgroundColor = stringToColor(
+                styles.replace('color:         ', '')
+                    .replace('font-size:     ', '')
+                    .replace('line-height:     ', '')
+                    .replace('font-weight:     ', '')
+                    .replace('font-style:     ', '')
+                    .replace('letter-spacing: ', '')
+            );
+
+            $styleGuideIdenticator.css('backgroundColor', backgroundColor);
+            $styleGuideIdenticator.addClass('styleguide-identicator');
+            $styleGuideIdenticator.attr('data-styles', styles);
+
+            if ($(this).find('.hide-desktop').length) {
+                $styleGuideIdenticator.addClass('hide-desktop');
+            } else if ($(this).find('.hide-mobile').length) {
+                $styleGuideIdenticator.addClass('hide-mobile');
+            }
+
+            $(this).append($styleGuideIdenticator);
+        });
+
+        colors.sort();
+
+        $.each(colors, function(key, value) {
+            var $color = $('<div/>');
+            $color.text(value);
+            $color.addClass('styleguide-color');
+            $color.css('backgroundColor', value);
+
+            $('#colors').append($color);
+        });
+    </script>
+</body>
+</html>
