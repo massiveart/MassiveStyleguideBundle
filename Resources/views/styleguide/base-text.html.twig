@@ -46,8 +46,8 @@
             display: inline-block;
         }
 
-        .styleguide-container [class]:not(.styleguide-identicator):not(button),
-        .styleguide-container [class]:not(.styleguide-identicator):not(button) > * {
+        .styleguide-container [class]:not(.styleguide-identicator):not(button):not([class^="icon-"]),
+        .styleguide-container [class]:not(.styleguide-identicator):not(button):not([class^="icon-"]) > * {
             display: block !important;
             text-align: left !important;
             margin: 0 !important;
@@ -57,11 +57,6 @@
             left: 0 !important;
             right: 0 !important;
             border: 0 !important;
-        }
-
-        .styleguide-container [class]:not(.styleguide-identicator)::after,
-        .styleguide-container [class]:not(.styleguide-identicator)::before {
-            display: none !important;;
         }
 
         .styleguide-identicator {

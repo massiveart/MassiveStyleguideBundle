@@ -10,11 +10,13 @@ The base styleguide will show you a side to side view off all your texts in all 
 namespace AppBundle\Controller;
 
 use L91\Bundle\StyleguideBundle\Controller\ParseBreakpointTrait;
+use L91\Bundle\StyleguideBundle\Controller\ParseIconTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class StyleguideController extends Controller
 {
     use ParseBreakpointTrait;
+    use ParseIconTrait;
 
     public function baseAction()
     {
@@ -31,9 +33,13 @@ class StyleguideController extends Controller
 
     public function textAction()
     {
+        $icons = $this->parseIcons(dirname(__DIR__) . '/Resources/public/icons/icomoon/variables.scss');
+
         return $this->render(
             'styleguide/styleguide-text.html.twig',
-            []
+            [
+                'icons' => $icons,
+            ]
         );
     }
 }
@@ -68,7 +74,7 @@ Define the routes:
 </routes>
 ```
 
-You can then create the stylesheet in your `styleguide/styleguide-text.html.twig`
+You can then create the styleguide in your `styleguide/styleguide-text.html.twig`:
 
 ```twig
 {% extends '@L91Styleguide/styleguide/base-text.html.twig' %}
@@ -79,11 +85,8 @@ You can then create the stylesheet in your `styleguide/styleguide-text.html.twig
 {% endblock %}
 
 {% block content %}
-    <div class="styleguide-container">
-        <h1 class="intro__title">
-            Intro Title<br/>
-            with a break
-        </h1>
+    <div class="styleguide-sub-title">
+        Titles
     </div>
 
     <div class="styleguide-container">
@@ -91,6 +94,17 @@ You can then create the stylesheet in your `styleguide/styleguide-text.html.twig
             Countdown title<br/>
             with a break
         </div>
+    </div>
+    
+    <!-- Icons -->
+    <div class="styleguide-sub-title">
+        Icons
+    </div>
+
+    <div class="styleguide-container">
+        {% for icon in icons %}
+            <span class="icon-{{ icon }}" title="{{ icon }}"></span>
+        {% endfor %}
     </div>
 {% endblock %}
 
