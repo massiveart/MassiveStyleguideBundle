@@ -6,38 +6,48 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    {% block style %}
-    {% endblock %}
+    {% block style %}{% endblock %}
 
     <style>
         body {
-            min-width: 320px;
-            margin: 0;
-            padding: 0;
+            width: 320px !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .styleguide-container {
-            border: 1px dotted silver;
-            margin: 0 20px !important;
-            width: 280px;
+            border-bottom: 1px dotted silver;
+            padding: 10px 35px 10px 10px;
             max-width: 100%;
-            height: 100px;
+            height: {% block containerHeight %}100{% endblock %}px;
             position: relative;
+            overflow: hidden;
+        }
+
+        .styleguide-container::after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 35px;
+            right: 0;
+            top: 0;
+            height: 100%;
+            background: white;
         }
 
         .styleguide-sub-title {
-            width: 320px;
-            padding: 10px 20px;
+            width: 100%;
+            padding: 10px 10px;
             height: 50px;
             background: #E0E2E4;
             font-weight: bold;
             font-size: 1.25rem;
-            line-height:1.5em;
+            line-height: 1.5em;
             display: inline-block;
         }
 
-        .styleguide-container [class]:not(.styleguide-identicator),
-        .styleguide-container [class]:not(.styleguide-identicator) > * {
+        .styleguide-container [class]:not(.styleguide-identicator):not(button),
+        .styleguide-container [class]:not(.styleguide-identicator):not(button) > * {
             display: block !important;
             text-align: left !important;
             margin: 0 !important;
@@ -61,8 +71,8 @@
             border: 1px solid black;
             width: 15px;
             height: 15px;
-            top: 5px;
-            right: 5px;
+            top: 10px;
+            right: 10px;
             border-radius: 50%;
         }
 
@@ -73,7 +83,7 @@
             font-size: 12px;
             font-family: monospace;
             right: 15px;
-            top: 0px;
+            top: 0;
             line-height: 1em;
             background: white;
             color: black;
@@ -82,9 +92,8 @@
         }
 
         .styleguide-colors {
-            width: 280px;
             border: 1px dotted silver;
-            margin: 0 20px !important;
+            margin: 0 10px !important;
             max-width: 100%;
             position: relative;
         }
@@ -105,135 +114,154 @@
 </head>
 <body>
     <!-- Text -->
-    <div class="styleguide-container" style="height: 600px">
-        <!-- Paragraphs -->
-        <p>
-            This is a <br>
-            basic text with a break.
-        </p>
+    {% block text %}
+        <div class="styleguide-container" style="height: 600px">
+            <!-- Paragraphs -->
+            <p>
+                This is a <br>
+                basic text with a break.
+            </p>
 
-        <p>
-            <strong>Bold</strong>
-            <em>Italic</em>
-            <sup>Sup</sup>
-            <s>Strike</s>
-            <sub>Sub</sub>
-            <a href="#">Link</a>
-        </p>
+            <p>
+                <strong>Bold</strong>
+                <em>Italic</em>
+                <sup>Sup</sup>
+                <s>Strike</s>
+                <sub>Sub</sub>
+                <a href="#">Link</a>
+            </p>
 
-        <p>
-            This is another <br>
-            paragraph.
-        </p>
+            <p>
+                This is another <br>
+                paragraph.
+            </p>
 
-        <!-- Unordered List -->
-        <ul>
-            <li>
-                Unordered List
-            </li>
+            <!-- Unordered List -->
+            <ul>
+                <li>
+                    Unordered List
+                </li>
 
-            <li>
-                Unordered List
-                <ul>
-                    <li>
-                        Unordered List<br>
-                        with break
-                    </li>
+                <li>
+                    Unordered List
+                    <ul>
+                        <li>
+                            Unordered List<br>
+                            with break
+                        </li>
 
-                    <li>
-                        Unordered List
-                    </li>
-                </ul>
-            </li>
+                        <li>
+                            Unordered List
+                        </li>
+                    </ul>
+                </li>
 
-            <li>
-                Unordered List<br>
-                with break
-            </li>
-        </ul>
+                <li>
+                    Unordered List<br>
+                    with break
+                </li>
+            </ul>
 
-        <!-- Ordered List -->
-        <ol>
-            <li>
-                Ordered List
-            </li>
+            <!-- Ordered List -->
+            <ol>
+                <li>
+                    Ordered List
+                </li>
 
-            <li>
-                Ordered List
-                <ol>
-                    <li>
-                        Ordered List
-                    </li>
+                <li>
+                    Ordered List
+                    <ol>
+                        <li>
+                            Ordered List
+                        </li>
 
-                    <li>
-                        Ordered<br>
-                        List
-                    </li>
-                </ol>
-            </li>
+                        <li>
+                            Ordered<br>
+                            List
+                        </li>
+                    </ol>
+                </li>
 
-            <li>
-                Ordered<br>
-                List
-            </li>
-        </ol>
-    </div>
+                <li>
+                    Ordered<br>
+                    List
+                </li>
+            </ol>
+        </div>
+    {% endblock %}
 
-    <!-- Colors -->
-    <div class="styleguide-sub-title">
-        Text colors
-    </div>
+    {% block colors %}
+        <!-- Colors -->
+        <div class="styleguide-sub-title">
+            Text colors
+        </div>
 
-    <div id="colors" class="styleguide-colors">
+        <div id="colors" class="styleguide-colors">
 
-    </div>
+        </div>
+    {% endblock %}
 
-    <!-- Headlines -->
-    <div class="styleguide-sub-title">
-        Headlines
-    </div>
+    {% block headlines %}
+        <!-- Headlines -->
+        <div class="styleguide-sub-title">
+            Headlines
+        </div>
 
-    <div class="styleguide-container">
-        <h1>
-            Headline H1<br/>
-            with a break
-        </h1>
-    </div>
+        {% block h1 %}
+            <div class="styleguide-container styleguide-container--h1">
+                <h1>
+                    Headline H1<br/>
+                    with a break
+                </h1>
+            </div>
+        {% endblock %}
 
-    <div class="styleguide-container">
-        <h2>
-            Headline H2<br/>
-            with a break
-        </h2>
-    </div>
+        {% block h2 %}
+            <div class="styleguide-container styleguide-container--h2">
+                <h2>
+                    Headline H2<br/>
+                    with a break
+                </h2>
+            </div>
+        {% endblock %}
 
-    <div class="styleguide-container">
-        <h3>
-            Headline H3<br/>
-            with a break
-        </h3>
-    </div>
+        {% block h3 %}
+        <div class="styleguide-container styleguide-container--h3">
+            <h3>
+                Headline H3<br/>
+                with a break
+            </h3>
+        </div>
+        {% endblock %}
 
-    <div class="styleguide-container">
-        <h4>
-            Headline H4<br/>
-            with a break
-        </h4>
-    </div>
+        {% block h4 %}
+            <div class="styleguide-container styleguide-container--h4">
+                <h4>
+                    Headline H4<br/>
+                    with a break
+                </h4>
+            </div>
+        {% endblock %}
 
-    <div class="styleguide-container">
-        <h5>
-            Headline H5<br/>
-            with a break
-        </h5>
-    </div>
+        {% block h5 %}
 
-    <div class="styleguide-container">
-        <h6>
-            Headline H6<br/>
-            with a break
-        </h6>
-    </div>
+            <div class="styleguide-container styleguide-container--h5">
+                <h5>
+                    Headline H5<br/>
+                    with a break
+                </h5>
+            </div>
+        {% endblock %}
+
+        {% block h6 %}
+            <div class="styleguide-container styleguide-container--h6">
+                <h6>
+                    Headline H6<br/>
+                    with a break
+                </h6>
+            </div>
+        {% endblock %}
+    {% endblock %}
 
     {% block content %}{% endblock %}
 
