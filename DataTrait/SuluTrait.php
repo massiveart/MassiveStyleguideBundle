@@ -1,6 +1,6 @@
 <?php
 
-namespace L91\Bundle\StyleguideBundle\DataTrait;
+namespace Massive\Bundle\StyleguideBundle\DataTrait;
 
 trait SuluTrait
 {

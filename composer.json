@@ -1,5 +1,5 @@
 {
-    "name": "l91/styleguide-bundle",
+    "name": "massive/styleguide-bundle",
     "description": "A bundle to create styleguide pages.",
     "type": "sulu-bundle",
     "require": {
@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-4": {
-            "L91\\Bundle\\StyleguideBundle\\": ""
+            "Massive\\Bundle\\StyleguideBundle\\": ""
         }
     },
     "config": {

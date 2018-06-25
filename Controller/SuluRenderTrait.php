@@ -1,6 +1,6 @@
 <?php
 
-namespace L91\Bundle\StyleguideBundle\Controller;
+namespace Massive\Bundle\StyleguideBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 

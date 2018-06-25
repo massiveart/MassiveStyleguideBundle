@@ -9,8 +9,8 @@ The base styleguide will show you a side to side view off all your texts in all 
 
 namespace AppBundle\Controller;
 
-use L91\Bundle\StyleguideBundle\Controller\ParseBreakpointTrait;
-use L91\Bundle\StyleguideBundle\Controller\ParseIconTrait;
+use Massive\Bundle\StyleguideBundle\Controller\ParseBreakpointTrait;
+use Massive\Bundle\StyleguideBundle\Controller\ParseIconTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class StyleguideController extends Controller
@@ -23,7 +23,7 @@ class StyleguideController extends Controller
         $breakpoints = $this->parseBreakpoints(dirname(__DIR__) . '/Resources/css/settings/_breakpoint.scss');
 
         return $this->render(
-            '@L91Styleguide/styleguide/base.html.twig',
+            '@MassiveStyleguide/styleguide/base.html.twig',
             [
                 'route' => 'app.styleguide.text',
                 'breakpoints' => $breakpoints,
@@ -77,7 +77,7 @@ Define the routes:
 You can then create the styleguide in your `styleguide/styleguide-text.html.twig`:
 
 ```twig
-{% extends '@L91Styleguide/styleguide/base-text.html.twig' %}
+{% extends '@MassiveStyleguide/styleguide/base-text.html.twig' %}
 
 {% block style %}
     <link rel="stylesheet" href="{{ asset('/bundles/app/css/main.css', 'static') }}">
@@ -122,8 +122,8 @@ You can use the sulu traits to create a dummy data for rendering a sulu site.
 
 namespace AppBundle\Controller;
 
-use L91\Bundle\StyleguideBundle\Controller\SuluRenderTrait;
-use L91\Bundle\StyleguideBundle\DataTrait\SuluTrait;
+use Massive\Bundle\StyleguideBundle\Controller\SuluRenderTrait;
+use Massive\Bundle\StyleguideBundle\DataTrait\SuluTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class StyleguideController extends Controller
