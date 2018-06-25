@@ -41,30 +41,55 @@
 
         .styleguide-title {
             position: fixed;
-            background: white;
-            z-index: 10;
+            background: black;
+            color: white;
+            z-index: 1000;
             top: 0;
             width: 320px;
             padding: 10px 20px;
             font-weight: bold;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .styleguide-title-name {
             font-size: 28px;
             line-height: 30px;
-            border-bottom: 1px solid black;
+            padding: 0 5px;
+        }
+
+        .styleguide-title-dimensions {
+            font-size: 14px;
+            line-height: 30px;
+            padding: 0 5px;
         }
     </style>
 </head>
 <body>
     <div class="styleguide">
-        {% for name, value in breakpoints %}
+        {% for breakpoint in breakpoints %}
             <div class="styleguide-frame">
                 <div class="styleguide-title">
-                    {{- name|capitalize }} {% if not loop.first %}{{ value }}px{% endif %}
+                    <div class="styleguide-title-name">
+                        {{- breakpoint.name|capitalize }}
+                    </div>
+                    <div class="styleguide-title-dimensions">
+                        {% if breakpoint.max|default %}{{ breakpoint.max }}px{% else %}∞{% endif %}
+                        -
+                        {% if breakpoint.min|default %}{{ breakpoint.min }}px{% else %}0{% endif %}
+                    </div>
                 </div>
 
-                <iframe width="{{ value }}px"
+                <iframe width="{{ breakpoint.max|default(breakpoint.min) }}px"
                         height="{{ height|default(99999) }}px"
-                        src="{{ path(route, { breakpoint: name, breakpointValue: value }) }}">
-                    View for "{{ name }}"
+                        src="{{ path(route, { breakpoint: breakpoint }) }}"
+                        marginheight="0"
+                        marginwidth="0"
+                        frameborder="0"
+                        scrolling="no">
+                    View for "{{ breakpoint.name }}"
                 </iframe>
             </div>
         {% endfor %}

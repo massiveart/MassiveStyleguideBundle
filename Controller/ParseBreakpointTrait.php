@@ -18,12 +18,19 @@ trait ParseBreakpointTrait
             if ($biggestValue < $value) {
                 $biggestValue = $value;
             }
-            $breakpoints[$name] = $value;
+            $breakpoints[] = [
+                'name' => $name,
+                'max' => $value,
+                'min' => isset($matches[2][$key + 1]) ? $matches[2][$key + 1] + 1 : 0,
+            ];
         }
 
         return array_merge(
             [
-                'default' => $biggestValue + 1,
+                [
+                    'name' => 'default',
+                    'min' => $biggestValue + 1,
+                ],
             ],
             $breakpoints
         );
