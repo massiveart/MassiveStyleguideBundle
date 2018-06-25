@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-bottom: 100px;
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            min-width: {{ breakpoints|length * 321 + 100 }}px;
+        }
+
+        iframe {
+            border: 0;
+        }
+
+        .styleguide {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .styleguide-frame {
+            position: relative;
+            padding-top: 50px;
+            flex: 0 0 auto;
+            width: 320px;
+            overflow:  hidden;
+            border-right: 1px solid black;
+        }
+
+        .styleguide-title {
+            position: fixed;
+            background: white;
+            z-index: 10;
+            top: 0;
+            width: 320px;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 28px;
+            line-height: 30px;
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="styleguide">
+        {% for name, value in breakpoints %}
+            <div class="styleguide-frame">
+                <div class="styleguide-title">
+                    {{- name|capitalize }} {% if not loop.first %}{{ value }}px{% endif %}
+                </div>
+
+                <iframe width="{{ value }}px"
+                        height="{{ height|default(99999) }}px"
+                        src="{{ path(route, { breakpoint: name, breakpointValue: value }) }}">
+                    View for "{{ name }}"
+                </iframe>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

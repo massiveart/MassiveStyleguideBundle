@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% set isMobile = app.request.get('mobile') -%}
 <html lang="{{ app.request.locale }}">
 <head>
     <meta charset="utf-8">
@@ -17,10 +16,6 @@
             margin: 0;
         }
 
-        iframe {
-            border: 0;
-        }
-
         .styleguide-container {
             border: 1px dotted silver;
             margin: 0 20px !important;
@@ -28,14 +23,6 @@
             max-width: 100%;
             height: 100px;
             position: relative;
-        }
-
-        .styleguide-title {
-            width: 300px;
-            padding: 10px 20px;
-            font-weight: bold;
-            font-size: 2rem;
-            display: inline-block;
         }
 
         .styleguide-sub-title {
@@ -85,8 +72,8 @@
             white-space: pre;
             font-size: 12px;
             font-family: monospace;
-            left: 15px;
-            top: -7px;
+            right: 15px;
+            top: 0px;
             line-height: 1em;
             background: white;
             color: black;
@@ -134,32 +121,12 @@
     </style>
 </head>
 <body>
-    {% if not isMobile %}
-        <div style="position: fixed;width: 100%;z-index: 200;background:white;border-bottom:1px solid black;">
-            {% spaceless %}
-                <div class="styleguide-title">
-                    Desktop
-                </div>
-
-                <div class="styleguide-title">
-                    Mobile
-                </div>
-            {% endspaceless %}
-        </div>
-
-        <br>
-        <br>
-        <br>
-
-        <iframe class="mobile-styleguide" src="?mobile=true" width="480" height="6000" scrolling="no"></iframe>
-    {% endif %}
-
     <!-- Text -->
     <div class="styleguide-container" style="height: 600px">
         <!-- Paragraphs -->
         <p>
-            Das ist ein <br>
-            Fließtext mit Umbruch.
+            This is a <br>
+            basic text with a break.
         </p>
 
         <p>
@@ -172,8 +139,8 @@
         </p>
 
         <p>
-            Ein weiterer <br>
-            Absatz.
+            This is another <br>
+            paragraph.
         </p>
 
         <!-- Unordered List -->
@@ -231,7 +198,7 @@
 
     <!-- Colors -->
     <div class="styleguide-sub-title">
-        Text Colors
+        Text colors
     </div>
 
     <div id="colors" class="styleguide-colors">
