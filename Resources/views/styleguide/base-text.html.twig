@@ -22,6 +22,13 @@
     </style>
 </head>
 <body>
+    <div class="styleguide-container" style="height: auto;">
+        <a class="styleguide-download" data-sketch-download>
+            <img src="/bundles/massivestyleguide/images/sketch.svg" alt="Sketch">
+            <div>Download</div>
+        </a>
+    </div>
+
     <!-- Text -->
     {% block text %}
         <div class="styleguide-container" style="height: 600px">
@@ -153,7 +160,6 @@
         {% endblock %}
 
         {% block h5 %}
-
             <div class="styleguide-container styleguide-container--h5">
                 <h5>
                     Headline H5<br/>
@@ -253,5 +259,7 @@
             $('#colors').append($color);
         });
     </script>
+
+    <script src="/bundles/massivestyleguide/js/main.js"></script>
 </body>
 </html>
