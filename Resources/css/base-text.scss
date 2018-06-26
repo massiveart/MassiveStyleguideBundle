@@ -1,0 +1,81 @@
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.styleguide-container {
+    border-bottom: 1px dotted silver;
+    padding: 10px 35px 10px 10px;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.styleguide-container::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 35px;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: white;
+}
+
+.styleguide-sub-title {
+    width: 100%;
+    padding: 10px 10px;
+    height: 50px;
+    background: #E0E2E4;
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    display: inline-block;
+}
+
+.styleguide-identicator {
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    border: 1px solid black;
+    width: 15px;
+    height: 15px;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+}
+
+.styleguide-identicator:hover::after {
+    position: absolute;
+    content: attr(data-styles);
+    white-space: pre;
+    font-size: 12px;
+    font-family: monospace;
+    right: 15px;
+    top: 0;
+    line-height: 1em;
+    background: white;
+    color: black;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.styleguide-colors {
+    border: 1px dotted silver;
+    margin: 0 10px !important;
+    max-width: 100%;
+    position: relative;
+}
+
+.styleguide-color {
+    padding: 10px;
+    color: white;
+    height: 40px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.sf-toolbar {
+    /* Disable symfony debug toolbar */
+    display: none !important;
+}

@@ -5,70 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/bundles/massivestyleguide/css/base.css">
+    {% block title %}{% endblock %}
 
     <style>
-        *,
-        *::after,
-        *::before {
-            box-sizing: border-box;
-        }
+        {% set frameWidth = frameWidth|default(360) %}
 
         body {
-            padding: 0;
-            margin: 0;
-            font-family: sans-serif;
-            font-size: 16px;
-            min-width: {{ breakpoints|length * 321 + 100 }}px;
-        }
-
-        iframe {
-            border: 0;
-        }
-
-        .styleguide {
-            display: flex;
-            flex-wrap: nowrap;
+            min-width: {{ breakpoints|length * (frameWidth + 1) }}px;
         }
 
         .styleguide-frame {
-            position: relative;
-            padding-top: 50px;
-            flex: 0 0 auto;
-            width: 320px;
-            overflow:  hidden;
-            border-right: 1px solid black;
+            width: {{ frameWidth }}px;
         }
 
         .styleguide-title {
-            position: fixed;
-            background: black;
-            color: white;
-            z-index: 1000;
-            top: 0;
-            width: 320px;
-            padding: 10px 5px;
-            font-weight: bold;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .styleguide-title-name {
-            font-size: 28px;
-            line-height: 30px;
-            padding: 0 5px;
-        }
-
-        .styleguide-title-dimensions {
-            font-size: 14px;
-            line-height: 30px;
-            padding: 0 5px;
+            width: {{ frameWidth }}px;
         }
     </style>
 </head>
 <body>
     <div class="styleguide">
+        <a class="styleguide-download" data-sketch-download>
+            <img src="/bundles/massivestyleguide/images/sketch.svg" alt="Sketch">
+        </a>
+
         {% for breakpoint in breakpoints %}
             <div class="styleguide-frame">
                 <div class="styleguide-title">
@@ -94,5 +55,7 @@
             </div>
         {% endfor %}
     </div>
+
+    <script src="/bundles/massivestyleguide/js/main.js"></script>
 </body>
 </html>

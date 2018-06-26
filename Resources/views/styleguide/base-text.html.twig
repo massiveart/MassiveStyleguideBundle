@@ -5,105 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <link rel="stylesheet" href="/bundles/massivestyleguide/css/base-text.css">
     {% block style %}{% endblock %}
 
     <style>
+        {% set frameWidth = frameWidth|default(360) %}
+        {% set containerHeight = containerHeight|default(100) %}
+
         body {
-            width: 320px !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            width: {{ frameWidth }}px !important;
         }
 
         .styleguide-container {
-            border-bottom: 1px dotted silver;
-            padding: 10px 35px 10px 10px;
-            max-width: 100%;
-            height: {% block containerHeight %}100{% endblock %}px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .styleguide-container::after {
-            content: "";
-            position: absolute;
-            display: block;
-            width: 35px;
-            right: 0;
-            top: 0;
-            height: 100%;
-            background: white;
-        }
-
-        .styleguide-sub-title {
-            width: 100%;
-            padding: 10px 10px;
-            height: 50px;
-            background: #E0E2E4;
-            font-weight: bold;
-            font-size: 1.25rem;
-            line-height: 1.5em;
-            display: inline-block;
-        }
-
-        .styleguide-container [class]:not(.styleguide-identicator):not(button):not([class^="icon-"]),
-        .styleguide-container [class]:not(.styleguide-identicator):not(button):not([class^="icon-"]) > * {
-            display: block !important;
-            text-align: left !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            top: 0 !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            border: 0 !important;
-        }
-
-        .styleguide-identicator {
-            cursor: pointer;
-            position: absolute;
-            z-index: 10;
-            border: 1px solid black;
-            width: 15px;
-            height: 15px;
-            top: 10px;
-            right: 10px;
-            border-radius: 50%;
-        }
-
-        .styleguide-identicator:hover::after {
-            position: absolute;
-            content: attr(data-styles);
-            white-space: pre;
-            font-size: 12px;
-            font-family: monospace;
-            right: 15px;
-            top: 0;
-            line-height: 1em;
-            background: white;
-            color: black;
-            padding: 5px;
-            border: 1px solid black;
-        }
-
-        .styleguide-colors {
-            border: 1px dotted silver;
-            margin: 0 10px !important;
-            max-width: 100%;
-            position: relative;
-        }
-
-        .styleguide-color {
-            padding: 10px;
-            color: white;
-            height: 40px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .sf-toolbar {
-            /* Disable symfony debug toolbar */
-            display: none !important;
+            height: {{ containerHeight }}px;
         }
     </style>
 </head>
