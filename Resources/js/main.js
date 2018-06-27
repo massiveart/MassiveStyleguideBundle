@@ -2,15 +2,9 @@ import {
     nodeTreeToSketchPage
 } from '@brainly/html-sketchapp';
 import 'core-js/modules/es7.string.pad-start';
+import $ from 'jquery';
 
-/**
- * Create styleguide.asketch.json file from the current page.
- *
- * @param {Event} event
- */
-function createSketch(event) {
-    const link = event.currentTarget;
-    const node = document.body;
+function createSketch(link, node) {
     const page = nodeTreeToSketchPage(node);
     const date = new Date();
     const dateString = date.getUTCFullYear() + '-'
@@ -23,6 +17,10 @@ function createSketch(event) {
     }));
 }
 
-document.querySelectorAll('[data-sketch-download]').forEach(function(link) {
-    link.addEventListener('click', createSketch);
+$('.styleguide-download').click(function() {
+    createSketch(this, $(this).closest('[data-sketch-download]').children().first().get(0));
+});
+
+$('.styleguide-download-full').click(function() {
+    createSketch(this, $('body').find('[data-sketch-download]').first().get(0));
 });

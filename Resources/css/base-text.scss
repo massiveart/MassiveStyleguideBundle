@@ -3,7 +3,7 @@ body {
     padding: 0 !important;
 }
 
-.styleguide-download {
+.styleguide-download-full {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -21,12 +21,29 @@ body {
     }
 }
 
+.styleguide-download {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    height: 20px;
+    width: 20px;
+    background-image: url('/bundles/massivestyleguide/images/sketch.svg');
+    background-size: 100% 100%;
+    z-index: 20;
+}
+
 .styleguide-container {
     border-bottom: 1px dotted silver;
     padding: 10px 35px 10px 10px;
     max-width: 100%;
     position: relative;
     overflow: hidden;
+}
+
+.styleguide-container:hover .styleguide-download {
+    display: block;
 }
 
 .styleguide-container::after {

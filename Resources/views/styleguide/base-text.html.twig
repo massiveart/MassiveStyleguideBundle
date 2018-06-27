@@ -22,163 +22,163 @@
     </style>
 </head>
 <body>
-    <div class="styleguide-container" style="height: auto;">
-        <a class="styleguide-download" data-sketch-download>
+    <div data-sketch-download>
+        <a class="styleguide-download-full">
             <img src="/bundles/massivestyleguide/images/sketch.svg" alt="Sketch">
             <div>Download</div>
         </a>
+
+        <!-- Text -->
+        {% block text %}
+            <div class="styleguide-container" style="height: 600px">
+                <!-- Paragraphs -->
+                <p>
+                    This is a <br>
+                    basic text with a break.
+                </p>
+
+                <p>
+                    <strong>Bold</strong>
+                    <em>Italic</em>
+                    <sup>Sup</sup>
+                    <s>Strike</s>
+                    <sub>Sub</sub>
+                    <a href="#">Link</a>
+                </p>
+
+                <p>
+                    This is another <br>
+                    paragraph.
+                </p>
+
+                <!-- Unordered List -->
+                <ul>
+                    <li>
+                        Unordered List
+                    </li>
+
+                    <li>
+                        Unordered List
+                        <ul>
+                            <li>
+                                Unordered List<br>
+                                with break
+                            </li>
+
+                            <li>
+                                Unordered List
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        Unordered List<br>
+                        with break
+                    </li>
+                </ul>
+
+                <!-- Ordered List -->
+                <ol>
+                    <li>
+                        Ordered List
+                    </li>
+
+                    <li>
+                        Ordered List
+                        <ol>
+                            <li>
+                                Ordered List
+                            </li>
+
+                            <li>
+                                Ordered<br>
+                                List
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        Ordered<br>
+                        List
+                    </li>
+                </ol>
+            </div>
+        {% endblock %}
+
+        {% block colors %}
+            <!-- Colors -->
+            <div class="styleguide-sub-title">
+                Text colors
+            </div>
+
+            <div id="colors" class="styleguide-colors">
+
+            </div>
+        {% endblock %}
+
+        {% block headlines %}
+            <!-- Headlines -->
+            <div class="styleguide-sub-title">
+                Headlines
+            </div>
+
+            {% block h1 %}
+                <div class="styleguide-container styleguide-container--h1">
+                    <h1>
+                        Headline H1<br/>
+                        with a break
+                    </h1>
+                </div>
+            {% endblock %}
+
+            {% block h2 %}
+                <div class="styleguide-container styleguide-container--h2">
+                    <h2>
+                        Headline H2<br/>
+                        with a break
+                    </h2>
+                </div>
+            {% endblock %}
+
+            {% block h3 %}
+            <div class="styleguide-container styleguide-container--h3">
+                <h3>
+                    Headline H3<br/>
+                    with a break
+                </h3>
+            </div>
+            {% endblock %}
+
+            {% block h4 %}
+                <div class="styleguide-container styleguide-container--h4">
+                    <h4>
+                        Headline H4<br/>
+                        with a break
+                    </h4>
+                </div>
+            {% endblock %}
+
+            {% block h5 %}
+                <div class="styleguide-container styleguide-container--h5">
+                    <h5>
+                        Headline H5<br/>
+                        with a break
+                    </h5>
+                </div>
+            {% endblock %}
+
+            {% block h6 %}
+                <div class="styleguide-container styleguide-container--h6">
+                    <h6>
+                        Headline H6<br/>
+                        with a break
+                    </h6>
+                </div>
+            {% endblock %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
     </div>
-
-    <!-- Text -->
-    {% block text %}
-        <div class="styleguide-container" style="height: 600px">
-            <!-- Paragraphs -->
-            <p>
-                This is a <br>
-                basic text with a break.
-            </p>
-
-            <p>
-                <strong>Bold</strong>
-                <em>Italic</em>
-                <sup>Sup</sup>
-                <s>Strike</s>
-                <sub>Sub</sub>
-                <a href="#">Link</a>
-            </p>
-
-            <p>
-                This is another <br>
-                paragraph.
-            </p>
-
-            <!-- Unordered List -->
-            <ul>
-                <li>
-                    Unordered List
-                </li>
-
-                <li>
-                    Unordered List
-                    <ul>
-                        <li>
-                            Unordered List<br>
-                            with break
-                        </li>
-
-                        <li>
-                            Unordered List
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    Unordered List<br>
-                    with break
-                </li>
-            </ul>
-
-            <!-- Ordered List -->
-            <ol>
-                <li>
-                    Ordered List
-                </li>
-
-                <li>
-                    Ordered List
-                    <ol>
-                        <li>
-                            Ordered List
-                        </li>
-
-                        <li>
-                            Ordered<br>
-                            List
-                        </li>
-                    </ol>
-                </li>
-
-                <li>
-                    Ordered<br>
-                    List
-                </li>
-            </ol>
-        </div>
-    {% endblock %}
-
-    {% block colors %}
-        <!-- Colors -->
-        <div class="styleguide-sub-title">
-            Text colors
-        </div>
-
-        <div id="colors" class="styleguide-colors">
-
-        </div>
-    {% endblock %}
-
-    {% block headlines %}
-        <!-- Headlines -->
-        <div class="styleguide-sub-title">
-            Headlines
-        </div>
-
-        {% block h1 %}
-            <div class="styleguide-container styleguide-container--h1">
-                <h1>
-                    Headline H1<br/>
-                    with a break
-                </h1>
-            </div>
-        {% endblock %}
-
-        {% block h2 %}
-            <div class="styleguide-container styleguide-container--h2">
-                <h2>
-                    Headline H2<br/>
-                    with a break
-                </h2>
-            </div>
-        {% endblock %}
-
-        {% block h3 %}
-        <div class="styleguide-container styleguide-container--h3">
-            <h3>
-                Headline H3<br/>
-                with a break
-            </h3>
-        </div>
-        {% endblock %}
-
-        {% block h4 %}
-            <div class="styleguide-container styleguide-container--h4">
-                <h4>
-                    Headline H4<br/>
-                    with a break
-                </h4>
-            </div>
-        {% endblock %}
-
-        {% block h5 %}
-            <div class="styleguide-container styleguide-container--h5">
-                <h5>
-                    Headline H5<br/>
-                    with a break
-                </h5>
-            </div>
-        {% endblock %}
-
-        {% block h6 %}
-            <div class="styleguide-container styleguide-container--h6">
-                <h6>
-                    Headline H6<br/>
-                    with a break
-                </h6>
-            </div>
-        {% endblock %}
-    {% endblock %}
-
-    {% block content %}{% endblock %}
 
     {% block script %}{% endblock %}
 
@@ -209,7 +209,9 @@
 
         var colors = [];
 
-        $('.styleguide-container').each(function(i) {
+        var $styleguideContainer = $('.styleguide-container');
+
+        $styleguideContainer.each(function(i) {
             var $element = $(this).find('*').last();
             var $styleGuideIdenticator = $('<div/>');
             var styles = '';
@@ -258,6 +260,9 @@
 
             $('#colors').append($color);
         });
+
+        $styleguideContainer.attr('data-sketch-download', true);
+        $styleguideContainer.append('<a class="styleguide-download"></a>');
     </script>
 
     <script src="/bundles/massivestyleguide/js/main.js"></script>

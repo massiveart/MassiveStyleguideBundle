@@ -1,6 +1,6 @@
 {
   "name": "massive-styleguide",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Massive Styleguide",
   "main": "Resources/public/js/styleguide.js",
   "scripts": {
@@ -48,7 +48,8 @@
   },
   "dependencies": {
     "@brainly/html-sketchapp": "^3.3.1",
-    "core-js": "^2.5.7"
+    "core-js": "^2.5.7",
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^8.3.0",
