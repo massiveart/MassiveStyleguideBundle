@@ -175,6 +175,42 @@
                     </h6>
                 </div>
             {% endblock %}
+
+            {% block icons %}
+                {% if icons|default([])|length %}
+                    <!-- Icons -->
+                    <div class="styleguide-sub-title">
+                        Icons
+                    </div>
+
+                    <div class="styleguide-container">
+                        {% for icon in icons %}
+                            <span class="icon-{{ icon }}" title="{{ icon }}"></span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block elements %}
+                {% for group, elements in elements|default([]) %}
+                    <div class="styleguide-sub-title">
+                        {{ group }}
+                    </div>
+
+                    {% for element in elements %}
+                        <div class="styleguide-container{% if element.container is defined %} styleguide-container--{{ element.container }}{% endif %}">
+                            {%- if element.description is defined -%}
+                                {{- element.description -}}:<br/>
+                            {%- endif -%}
+
+                            <{{ element.tag|default('div') }} class="{{ element.class }}">
+                                {{- element.text -}}
+                                {%- if element.break|default -%}<br/>with break{%- endif -%}
+                            </{{ element.tag|default('div') }}>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endblock %}
         {% endblock %}
 
         {% block content %}{% endblock %}
