@@ -183,11 +183,13 @@
                         Icons
                     </div>
 
-                    <div class="styleguide-container">
-                        {% for icon in icons %}
-                            <span class="icon-{{ icon }}" title="{{ icon }}"></span>
-                        {% endfor %}
-                    </div>
+                    {% for fontSize in [16, 32, 48] %}
+                        <div class="styleguide-container" style="font-size: {{ fontSize }}px;line-height: 1.1;height: auto;">
+                            {% for icon in icons %}
+                                <span class="icon-{{ icon }}" title="{{ icon }}"></span>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
                 {% endif %}
             {% endblock %}
 

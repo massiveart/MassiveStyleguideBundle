@@ -6,12 +6,12 @@ import $ from 'jquery';
 
 function createSketch(link, node) {
     const page = nodeTreeToSketchPage(node);
-    const date = new Date();
-    const dateString = date.getUTCFullYear() + '-'
-        + (date.getUTCMonth() + 1).toString().padStart(2, '0') + '-'
-        + date.getUTCDay().toString().padStart(2, '0');
-    page.setName('Styleguide');
-    link.download = 'styleguide-' + dateString + '.asketch.json';
+    let name = node.className.split(' ').join('_');
+    if (!name) {
+        name = 'full';
+    }
+    page.setName('Styleguide: ' + name);
+    link.download = 'styleguide-' + name + '.asketch.json';
     link.href = window.URL.createObjectURL(new Blob([JSON.stringify(page.toJSON())], {
         type: 'application/json'
     }));

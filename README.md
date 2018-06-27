@@ -11,12 +11,14 @@ namespace AppBundle\Controller;
 
 use Massive\Bundle\StyleguideBundle\Controller\ParseBreakpointTrait;
 use Massive\Bundle\StyleguideBundle\Controller\ParseIconTrait;
+use Massive\Bundle\StyleguideBundle\Controller\ParseScssTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class StyleguideController extends Controller
 {
     use ParseBreakpointTrait;
     use ParseIconTrait;
+    use ParseScssTrait;
 
     public function baseAction()
     {
@@ -33,12 +35,14 @@ class StyleguideController extends Controller
 
     public function textAction()
     {
+        $elements = $this->parseScss(dirname(__DIR__) . '/Resources/css/main.scss');
         $icons = $this->parseIcons(dirname(__DIR__) . '/Resources/public/icons/icomoon/variables.scss');
 
         return $this->render(
             'styleguide/styleguide-text.html.twig',
             [
                 'icons' => $icons,
+                'elements' => $elements,
             ]
         );
     }
@@ -95,22 +99,30 @@ You can then create the styleguide in your `styleguide/styleguide-text.html.twig
             with a break
         </div>
     </div>
-    
-    <!-- Icons -->
-    <div class="styleguide-sub-title">
-        Icons
-    </div>
-
-    <div class="styleguide-container">
-        {% for icon in icons %}
-            <span class="icon-{{ icon }}" title="{{ icon }}"></span>
-        {% endfor %}
-    </div>
 {% endblock %}
 
 {% block script %}
     <script src="{{ asset('/bundles/app/js/main.js', 'static') }}"></script>
 {% endblock %}
+```
+
+You can also use annotations in your scss file to generate styleguide:
+
+```scss
+// @styleguide('button-round')
+.button-round {
+    // ...
+}
+
+// @styleguide('button-round', { "container": "black", "text": "W" })
+.button-round--white {
+    // ...
+}
+
+// @styleguide('title', { "tag": "h1", "break": true })
+.headline {
+    // ...
+}
 ```
 
 ## Sulu Styleguide
