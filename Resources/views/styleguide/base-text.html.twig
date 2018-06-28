@@ -196,7 +196,7 @@
             {% block elements %}
                 {% for group, elements in elements|default([]) %}
                     <div class="styleguide-sub-title">
-                        {{ group }}
+                        {{- group -}}
                     </div>
 
                     {% for element in elements %}

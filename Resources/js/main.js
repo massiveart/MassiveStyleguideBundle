@@ -4,6 +4,12 @@ import {
 import 'core-js/modules/es7.string.pad-start';
 import $ from 'jquery';
 
+/**
+ * Create asketch file.
+ *
+ * @param {HTMLElement} link
+ * @param {HTMLElement} node
+ */
 function createSketch(link, node) {
     const page = nodeTreeToSketchPage(node);
     let name = node.className.split(' ').join('_');
@@ -18,7 +24,7 @@ function createSketch(link, node) {
 }
 
 $('.styleguide-download').click(function() {
-    createSketch(this, $(this).closest('[data-sketch-download]').children().first().get(0));
+    createSketch(this, $(this).closest('[data-sketch-download]').children().not('br').first().get(0));
 });
 
 $('.styleguide-download-full').click(function() {

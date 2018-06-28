@@ -3,48 +3,12 @@ body {
     padding: 0 !important;
 }
 
-.styleguide-download-full {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 0;
-
-    > img {
-        display: inline-block;
-        height: 30px;
-        margin-right: 10px;
-        width: 30px;
-    }
-
-    & + .styleguide-identicator {
-        display: none;
-    }
-}
-
-.styleguide-download {
-    display: none;
-    cursor: pointer;
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    height: 20px;
-    width: 20px;
-    background-image: url('/bundles/massivestyleguide/images/sketch.svg');
-    background-size: 100% 100%;
-    z-index: 20;
-}
-
 .styleguide-container {
     border-bottom: 1px dotted silver;
     padding: 10px 35px 10px 10px;
     max-width: 100%;
     position: relative;
     overflow: hidden;
-}
-
-.styleguide-container:hover .styleguide-download {
-    display: block;
 }
 
 .styleguide-container::after {
@@ -94,6 +58,42 @@ body {
     color: black;
     padding: 5px;
     border: 1px solid black;
+}
+
+.styleguide-download-full {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+
+    > img {
+        display: inline-block;
+        height: 30px;
+        margin-right: 10px;
+        width: 30px;
+    }
+
+    & + .styleguide-identicator {
+        display: none;
+    }
+}
+
+.styleguide-download {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    height: 20px;
+    width: 20px;
+    background-image: url('/bundles/massivestyleguide/images/sketch.svg');
+    background-size: 100% 100%;
+    z-index: 20;
+}
+
+.styleguide-container:hover .styleguide-download {
+    display: block;
 }
 
 .styleguide-colors {
