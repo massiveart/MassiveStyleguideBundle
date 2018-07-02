@@ -29,7 +29,7 @@ trait ParseScssTrait
                 $class = explode('--', $class)[0] . ' ' . $class;
             }
 
-            if (isset($data['text'])) {
+            if (isset($data['text']) && !isset($data['description'])) {
                 $data['description'] = $text;
             }
 
