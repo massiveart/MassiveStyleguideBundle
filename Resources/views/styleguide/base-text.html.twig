@@ -201,7 +201,7 @@
 
                     {% for element in elements %}
                         <div class="styleguide-container{% if element.container is defined %} styleguide-container--{{ element.container }}{% endif %}">
-                            {%- if element.description is defined -%}
+                            {%- if element.description|default -%}
                                 {{- element.description -}}:<br/>
                             {%- endif -%}
 
@@ -300,7 +300,7 @@
         });
 
         $styleguideContainer.attr('data-sketch-download', true);
-        $styleguideContainer.append('<a class="styleguide-download"></a>');
+        $styleguideContainer.append('<a class="styleguide-download" title="Download for sketch"></a>');
     </script>
 
     <script src="/bundles/massivestyleguide/js/main.js"></script>

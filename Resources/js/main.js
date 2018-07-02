@@ -1,7 +1,6 @@
 import {
     nodeTreeToSketchPage
 } from '@brainly/html-sketchapp';
-import 'core-js/modules/es7.string.pad-start';
 import $ from 'jquery';
 
 /**
