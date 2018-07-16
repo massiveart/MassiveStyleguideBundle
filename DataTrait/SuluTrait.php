@@ -7,6 +7,46 @@ trait SuluTrait
     use HtmlTrait;
 
     /**
+     * Create dummy pages.
+     *
+     * @param string $name
+     * @param int $length
+     *
+     * @return array
+     */
+    private function createDummyPages($name, $length = 4)
+    {
+        $teasers = [];
+
+        for ($i = 0; $i < $length; ++$i) {
+            $teasers[] = $this->createDummyPage($name . ' ' . ($i + 1), 0 !== $i % 2);
+        }
+
+        return $teasers;
+    }
+
+    /**
+     * Create dummy page.
+     *
+     * @param string $name
+     * @param bool $hasCategory
+     *
+     * @return array
+     */
+    private function createDummyPage($name, $hasCategory = false)
+    {
+        return [
+            'uuid' => null,
+            'title' => $name . ' Title',
+            'images' => $this->createDummyImages(2),
+            'excerpt' => $this->createDummyExcerpt($name, $hasCategory),
+            'description' => '<p>' . $name . ' description ' . $this->createDummyText() . ' </p>',
+            'url' => '/_styleguide/detail',
+            'routePath' => '/_styleguide/detail',
+        ];
+    }
+
+    /**
      * Create dummy teasers.
      *
      * @param string $name
@@ -19,7 +59,7 @@ trait SuluTrait
         $teasers = [];
 
         for ($i = 0; $i < $length; ++$i) {
-            $teasers[] = $this->createDummyTeaser($name . ' ' . ($i + 1), 0 !== $i % 2);
+            $teasers[] = $this->createDummyTeaser($name . ' ' . ($i + 1));
         }
 
         return $teasers;
@@ -29,20 +69,21 @@ trait SuluTrait
      * Create dummy teaser.
      *
      * @param string $name
-     * @param bool $hasCategory
      *
      * @return array
      */
-    private function createDummyTeaser($name, $hasCategory = false)
+    private function createDummyTeaser($name)
     {
         return [
-            'uuid' => null,
+            'id' => null,
+            'type' => 'page',
             'title' => $name . ' Title',
-            'images' => $this->createDummyImages(2),
-            'excerpt' => $this->createDummyExcerpt($name, $hasCategory),
+            'locale' => null,
+            'mediaId' => (object) $this->createDummyImage($name . ' Image'), // TODO should just be a valid mediaId
             'description' => '<p>' . $name . ' description ' . $this->createDummyText() . ' </p>',
+            'moreText' => 'More',
             'url' => '/_styleguide/detail',
-            'routePath' => '/_styleguide/detail',
+            'attributes' => [],
         ];
     }
 
