@@ -7,24 +7,41 @@ trait HtmlTrait
     /**
      * Create dummy text.
      *
+     * @param null $length
+     *
      * @return string
      */
-    private function createDummyText()
+    private function createDummyText($length = null)
     {
-        return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,.';
+        $text = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren';
+
+        if ($length) {
+            while ($length > strlen($text)) {
+                $text .= '. ' . $text;
+            }
+
+            $text = substr($text, 0, $length);
+        }
+
+        $text .= '.';
+
+        return $text;
     }
 
     /**
      * Create dummy text editor.
      *
+     * @param int $paragraphs
+     * @param int|null $length
+     *
      * @return string
      */
-    private function createDummyTextEditor($paragraphs = 1)
+    private function createDummyTextEditor($paragraphs = 1, $length = null)
     {
         $text = '';
 
         for ($i = 0; $i < $paragraphs; ++$i) {
-            $text .= '<p>' . $this->createDummyText() . '</p>';
+            $text .= '<p>' . $this->createDummyText($length) . '</p>';
         }
 
         return $text;
