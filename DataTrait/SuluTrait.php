@@ -203,9 +203,56 @@ trait SuluTrait
         return [
             'id' => null,
             'title' => $name,
-            'url' => null,
+            'url' => 'https://placehold.it/1920x1000?text=original',
             'mimeType' => 'image/jpeg',
+            'type' => [
+                'id' => 2,
+                'name' => 'image',
+            ],
             'name' => 'test.jpg',
+            'description' => $name . ' description',
+            'copyright' => $name . ' copyright',
+            'thumbnails' => $this->createPlaceholdItFormats(),
+        ];
+    }
+
+    /**
+     * Create dummy vidoes.
+     *
+     * @param int $length
+     *
+     * @return array
+     */
+    private function createDummyVideos($length)
+    {
+        $videos = [];
+
+        for ($i = 0; $i < $length; ++$i) {
+            $videos[] = $this->createDummyVideo('Video ' . ($i + 1));
+        }
+
+        return $videos;
+    }
+
+    /**
+     * Create dummy video.
+     *
+     * @param string $name
+     *
+     * @return array
+     */
+    private function createDummyVideo($name)
+    {
+        return [
+            'id' => null,
+            'title' => $name,
+            'url' => 'https://www.w3schools.com/htmL/mov_bbb.mp4',
+            'mimeType' => 'video/mp4',
+            'type' => [
+                'id' => 3,
+                'name' => 'video',
+            ],
+            'name' => 'video.mp4',
             'description' => $name . ' description',
             'copyright' => $name . ' copyright',
             'thumbnails' => $this->createPlaceholdItFormats(),
