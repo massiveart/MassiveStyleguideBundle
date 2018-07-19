@@ -79,25 +79,17 @@ trait HtmlTrait
      *
      * @param array $parameters
      * @param string $type
+     * @param string $videoId
      *
      * @return string
      */
-    private function createDummyEmbed($parameters = [], $type = 'vimeo')
+    private function createDummyEmbed($parameters = [], $type = 'vimeo', $videoId = null)
     {
-        $url = 'https://player.vimeo.com/video/120206922';
+        $url = 'https://player.vimeo.com/video/' . ($videoId ?: '1084537');
 
         if ('youtube' === $type) {
-            $url = 'https://www.youtube.com/embed/YE7VzlLtp-4';
+            $url = 'https://www.youtube.com/embed/' . ($videoId ?: 'YE7VzlLtp-4');
         }
-
-        $parameters = array_merge(
-            [
-                'autoplay' => 0,
-                'muted' => 0,
-                'loop' => 1,
-            ],
-            $parameters
-        );
 
         return sprintf(
             '<iframe width="560" height="315" src="%s?%s" frameborder="0" allowfullscreen></iframe>',
