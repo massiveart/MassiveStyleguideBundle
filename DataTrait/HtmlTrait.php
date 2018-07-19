@@ -56,7 +56,8 @@ trait HtmlTrait
      */
     private function createDummyList($tag = 'ul')
     {
-        return sprintf('<%s>
+        return sprintf(
+            '<%s>
                 <li>List 1</li>
                 <li>List 2
                     <%s>
@@ -76,10 +77,32 @@ trait HtmlTrait
     /**
      * Create dummy embed.
      *
+     * @param array $parameters
+     * @param string $type
+     *
      * @return string
      */
-    private function createDummyEmbed()
+    private function createDummyEmbed($parameters = [], $type = 'vimeo')
     {
-        return '<iframe width="800" height="350" style="border:none; overflow:hidden;" src="https://www.youtube.com/embed/muZ0JYBCnrU?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com"></iframe>';
+        $url = 'https://player.vimeo.com/video/120206922';
+
+        if ('youtube' === $type) {
+            $url = 'https://www.youtube.com/embed/YE7VzlLtp-4';
+        }
+
+        $parameters = array_merge(
+            [
+                'autoplay' => 0,
+                'muted' => 0,
+                'loop' => 1,
+            ],
+            $parameters
+        );
+
+        return sprintf(
+            '<iframe width="560" height="315" src="%s?%s" frameborder="0" allowfullscreen></iframe>',
+            $url,
+            http_build_query($parameters)
+        );
     }
 }
