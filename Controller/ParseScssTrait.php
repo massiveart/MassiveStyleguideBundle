@@ -21,6 +21,10 @@ trait ParseScssTrait
 
             $data = json_decode($matches[3][$key], true) ?: [];
 
+            if (!isset($data['tag'])) {
+                $data['tag'] = 'div';
+            }
+
             if(false !== strpos($class, 'button')) {
                 $data['tag'] = 'button';
             }

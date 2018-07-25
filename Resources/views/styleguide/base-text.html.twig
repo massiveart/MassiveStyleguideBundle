@@ -1,3 +1,4 @@
+{% import _self as self %}
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 <head>
@@ -141,12 +142,12 @@
             {% endblock %}
 
             {% block h3 %}
-            <div class="styleguide-container styleguide-container--h3">
-                <h3>
-                    Headline H3<br/>
-                    with a break
-                </h3>
-            </div>
+                <div class="styleguide-container styleguide-container--h3">
+                    <h3>
+                        Headline H3<br/>
+                        with a break
+                    </h3>
+                </div>
             {% endblock %}
 
             {% block h4 %}
@@ -176,43 +177,97 @@
                 </div>
             {% endblock %}
 
-            {% block icons %}
-                {% if icons|default([])|length %}
-                    <!-- Icons -->
-                    <div class="styleguide-sub-title">
-                        Icons
+            {% for element in elements.Headlines|default([]) %}
+                {{ self.element(element) }}
+            {% endfor %}
+        {% endblock %}
+
+        {% block icons %}
+            {% if icons|default([])|length %}
+                <!-- Icons -->
+                <div class="styleguide-sub-title">
+                    Icons
+                </div>
+
+                {% for fontSize in [16, 32, 48] %}
+                    <div class="styleguide-container" style="font-size: {{ fontSize }}px;line-height: 1.1;height: auto;">
+                        {% for icon in icons %}
+                            <span class="icon-{{ icon }}" title="{{ icon }}"></span>
+                        {% endfor %}
                     </div>
-
-                    {% for fontSize in [16, 32, 48] %}
-                        <div class="styleguide-container" style="font-size: {{ fontSize }}px;line-height: 1.1;height: auto;">
-                            {% for icon in icons %}
-                                <span class="icon-{{ icon }}" title="{{ icon }}"></span>
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endblock %}
-
-            {% block elements %}
-                {% for group, elements in elements|default([]) %}
-                    <div class="styleguide-sub-title">
-                        {{- group -}}
-                    </div>
-
-                    {% for element in elements %}
-                        <div class="styleguide-container{% if element.container is defined %} styleguide-container--{{ element.container }}{% endif %}">
-                            {%- if element.description is defined -%}
-                                {{- element.description -}}:<br/>
-                            {%- endif -%}
-
-                            <{{ element.tag|default('div') }} class="{{ element.class }}">
-                                {{- element.text -}}
-                                {%- if element.break|default -%}<br/>with break{%- endif -%}
-                            </{{ element.tag|default('div') }}>
-                        </div>
-                    {% endfor %}
                 {% endfor %}
+            {% endif %}
+        {% endblock %}
+
+        {% block forms %}
+            <!-- Form -->
+            <div class="styleguide-sub-title">
+                Forms
+            </div>
+
+            {% block input %}
+                <div class="styleguide-container styleguide-container--input">
+                    <label for="text-input">Base Input</label>
+                    <input id="text-input" type="text" />
+                </div>
             {% endblock %}
+
+            {% block checkbox %}
+                <div class="styleguide-container styleguide-container--checkbox">
+                    <input id="checkbox-input" type="checkbox" />
+                    <label for="checkbox-input">Base Checkbox</label>
+                </div>
+            {% endblock %}
+
+            {% block radio %}
+                <div class="styleguide-container styleguide-container--radio">
+                    <div>
+                        <input id="radio-input-1" type="radio" name="radio" />
+                        <label for="radio-input-1">Base Radio 1</label>
+                    </div>
+
+                    <div>
+                        <input id="radio-input-2" type="radio" name="radio" />
+                        <label for="radio-input-2">Base Radio 2</label>
+                    </div>
+                </div>
+            {% endblock %}
+
+            {% block select %}
+                <div class="styleguide-container styleguide-container--select">
+                    <label for="select-input">Base Select</label>
+
+                    <select id="select-input">
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                </div>
+            {% endblock %}
+
+            {% block textarea %}
+                <div class="styleguide-container styleguide-container--textarea">
+                    <label for="textarea-input">Base Textarea</label>
+
+                    <textarea id="textarea-input"></textarea>
+                </div>
+            {% endblock %}
+
+            {% for element in elements.Forms|default([]) %}
+                {{ self.element(element) }}
+            {% endfor %}
+        {% endblock %}
+
+        {% block elements %}
+            {% for group, elements in elements|default([]) if group not in ['Forms', 'Headlines'] %}
+                <div class="styleguide-sub-title">
+                    {{- group -}}
+                </div>
+
+                {% for element in elements %}
+                    {{ self.element(element) }}
+                {% endfor %}
+            {% endfor %}
         {% endblock %}
 
         {% block content %}{% endblock %}
@@ -306,3 +361,24 @@
     <script src="/bundles/massivestyleguide/js/main.js"></script>
 </body>
 </html>
+
+{% macro element(element) %}
+    <div class="styleguide-container{% if element.container is defined %} styleguide-container--{{ element.container }}{% endif %}">
+        {%- if element.description is defined -%}
+            {{- element.description -}}:<br/>
+        {%- endif -%}
+
+        {% if element.tag in ['input'] %}
+            <{{ element.tag }} class="{{ element.class }}" type="text" value="{{- element.text -}}">
+        {% elseif element.tag in ['select'] %}
+            <{{ element.tag }} class="{{ element.class }}">
+            <option>{{- element.text -}}</option>
+            </{{ element.tag }}>
+        {% else %}
+            <{{ element.tag }} class="{{ element.class }}">
+            {{- element.text -}}
+            {%- if element.break|default -%}<br/>with break{%- endif -%}
+            </{{ element.tag }}>
+        {% endif %}
+    </div>
+{% endmacro %}
