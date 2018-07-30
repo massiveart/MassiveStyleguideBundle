@@ -1,6 +1,6 @@
 {
   "name": "massive-styleguide",
-  "version": "1.0.29",
+  "version": "1.0.45",
   "description": "Massive Styleguide",
   "main": "Resources/public/js/styleguide.js",
   "scripts": {
@@ -47,7 +47,8 @@
     "update:version": "Update the build version which is used for static assets."
   },
   "dependencies": {
-    "@brainly/html-sketchapp": "^3.3.1",
+    "@brainly/html-sketchapp": "^4.0.0",
+    "copy-to-clipboard": "^3.0.8",
     "core-js": "^2.5.7",
     "jquery": "^3.3.1"
   },

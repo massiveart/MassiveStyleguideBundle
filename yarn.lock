@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@brainly/html-sketchapp@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@brainly/html-sketchapp/-/html-sketchapp-3.3.1.tgz#5348174e6e05e6a81bc0a78ab3acfd80dd6dfca8"
+"@brainly/html-sketchapp@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@brainly/html-sketchapp/-/html-sketchapp-4.0.0.tgz#a32cd17f9261e94c93a07bf85b8b3fcbf4bcf71b"
   dependencies:
     murmur2js "^1.0.0"
     normalize-css-color "^1.0.2"
@@ -1354,6 +1354,12 @@ convert-source-map@~1.1.0:
 copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
+
+copy-to-clipboard@^3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.0.8.tgz#f4e82f4a8830dce4666b7eb8ded0c9bcc313aba9"
+  dependencies:
+    toggle-selection "^1.0.3"
 
 core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.7:
   version "2.5.7"
@@ -5172,6 +5178,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+toggle-selection@^1.0.3:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/toggle-selection/-/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
 
 tough-cookie@~2.3.0, tough-cookie@~2.3.3:
   version "2.3.4"

@@ -117,6 +117,17 @@
             </div>
         {% endblock %}
 
+        {% block fontFamilies %}
+            <!-- Colors -->
+            <div class="styleguide-sub-title">
+                Font Families
+            </div>
+
+            <div id="font-families" class="styleguide-font-families">
+
+            </div>
+        {% endblock %}
+
         {% block headlines %}
             <!-- Headlines -->
             <div class="styleguide-sub-title">
@@ -191,9 +202,11 @@
 
                 {% for fontSize in [16, 32, 48] %}
                     <div class="styleguide-container" style="font-size: {{ fontSize }}px;line-height: 1.1;height: auto;">
-                        {% for icon in icons %}
-                            <span class="icon-{{ icon }}" title="{{ icon }}"></span>
-                        {% endfor %}
+                        <div>
+                            {% for icon in icons %}
+                                <span class="icon-{{ icon }}" title="{{ icon }}"></span>
+                            {% endfor %}
+                        </div>
                     </div>
                 {% endfor %}
             {% endif %}
@@ -207,49 +220,59 @@
 
             {% block input %}
                 <div class="styleguide-container styleguide-container--input">
-                    <label for="text-input">Base Input</label>
-                    <input id="text-input" type="text" />
+                    <div>
+                        <label for="text-input">Base Input</label>
+                        <input id="text-input" type="text" />
+                    </div>
                 </div>
             {% endblock %}
 
             {% block checkbox %}
                 <div class="styleguide-container styleguide-container--checkbox">
-                    <input id="checkbox-input" type="checkbox" />
-                    <label for="checkbox-input">Base Checkbox</label>
+                    <div>
+                        <input id="checkbox-input" type="checkbox" />
+                        <label for="checkbox-input">Base Checkbox</label>
+                    </div>
                 </div>
             {% endblock %}
 
             {% block radio %}
                 <div class="styleguide-container styleguide-container--radio">
                     <div>
-                        <input id="radio-input-1" type="radio" name="radio" />
-                        <label for="radio-input-1">Base Radio 1</label>
-                    </div>
+                        <div>
+                            <input id="radio-input-1" type="radio" name="radio" />
+                            <label for="radio-input-1">Base Radio 1</label>
+                        </div>
 
-                    <div>
-                        <input id="radio-input-2" type="radio" name="radio" />
-                        <label for="radio-input-2">Base Radio 2</label>
+                        <div>
+                            <input id="radio-input-2" type="radio" name="radio" />
+                            <label for="radio-input-2">Base Radio 2</label>
+                        </div>
                     </div>
                 </div>
             {% endblock %}
 
             {% block select %}
                 <div class="styleguide-container styleguide-container--select">
-                    <label for="select-input">Base Select</label>
+                    <div>
+                        <label for="select-input">Base Select</label>
 
-                    <select id="select-input">
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
+                        <select id="select-input">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
                 </div>
             {% endblock %}
 
             {% block textarea %}
                 <div class="styleguide-container styleguide-container--textarea">
-                    <label for="textarea-input">Base Textarea</label>
+                    <div>
+                        <label for="textarea-input">Base Textarea</label>
 
-                    <textarea id="textarea-input"></textarea>
+                        <textarea id="textarea-input"></textarea>
+                    </div>
                 </div>
             {% endblock %}
 
@@ -301,6 +324,7 @@
         };
 
         var colors = [];
+        var fontFamilies = [];
 
         var $styleguideContainer = $('.styleguide-container');
 
@@ -309,12 +333,18 @@
             var $styleGuideIdenticator = $('<div/>');
             var styles = '';
             var color = rgb2hex($element.css('color'));
+            var fontFamily = $element.css('font-weight') + ' ' +$element.css('font-family');
 
             if (colors.indexOf(color) === -1) {
                 colors.push(color);
             }
 
+            if (fontFamilies.indexOf(fontFamily) === -1) {
+                fontFamilies.push(fontFamily);
+            }
+
             styles += 'color:          ' +  color + "\n";
+            styles += 'font-family:    ' +  $element.css('font-family') + "\n";
             styles += 'font-size:      ' +  $element.css('font-size') + "\n";
             styles += 'line-height:    ' +  $element.css('line-height') + "\n";
             styles += 'font-weight:    ' +  $element.css('font-weight') + "\n";
@@ -323,6 +353,7 @@
 
             var backgroundColor = stringToColor(
                 styles.replace('color:         ', '')
+                    .replace('font-family:    ', '')
                     .replace('font-size:     ', '')
                     .replace('line-height:     ', '')
                     .replace('font-weight:     ', '')
@@ -352,6 +383,18 @@
             $color.css('backgroundColor', value);
 
             $('#colors').append($color);
+        });
+
+        $.each(fontFamilies, function(key, value) {
+            var fontWeight = value.substr(0, value.indexOf(' '));
+            var fontFamily = value.substr(value.indexOf(' ') + 1);
+            var $fontFamily = $('<div/>');
+            $fontFamily.text(fontFamily + ' (' + fontWeight + ')');
+            $fontFamily.addClass('styleguide-font-family');
+            $fontFamily.css('font-family', fontFamily);
+            $fontFamily.css('font-weight', fontWeight);
+
+            $('#font-families').append($fontFamily);
         });
 
         $styleguideContainer.attr('data-sketch-download', true);

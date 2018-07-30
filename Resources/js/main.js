@@ -1,7 +1,7 @@
 import {
     nodeTreeToSketchPage
 } from '@brainly/html-sketchapp';
-import 'core-js/modules/es7.string.pad-start';
+import copy from 'copy-to-clipboard';
 import $ from 'jquery';
 
 /**
@@ -14,13 +14,18 @@ function createSketch(link, node) {
     const page = nodeTreeToSketchPage(node);
     let name = node.className.split(' ').join('_');
     if (!name) {
+        name = node.tagName;
+    }
+    if (name === 'div') {
         name = 'full';
     }
     page.setName('Styleguide: ' + name);
     link.download = 'styleguide-' + name + '.asketch.json';
     link.href = window.URL.createObjectURL(new Blob([JSON.stringify(page.toJSON())], {
-        type: 'application/json'
+        Type: 'application/json'
     }));
+
+    copy(JSON.stringify(page.toJSON()));
 }
 
 $('.styleguide-download').click(function() {
